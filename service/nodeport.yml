@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-pod
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      env: test
+  replicas: 4
+  template:
+    metadata:
+      name: deploy-pod
+      labels:
+        env: test
+    spec:
+      containers:
+        - name: deploy-pod
+          image: nginx
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: dev
+  name: first-svc
+  labels:
+    env: dev
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  type: NodePort
+  selector:
+    env: test
+
+
+# service enables communation b/w diffrent objectives
+# frontend to backend
