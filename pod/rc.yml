@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: new-rc
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: ide-pod
+    spec:
+      containers:
+      - name: rc-pod
+        image: nginx
+
+
+# (pod+controller)= Rc or rs the difreence b/w rc vs rs is selector is mandtray in rs

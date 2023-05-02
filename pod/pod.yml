@@ -8,3 +8,7 @@ spec:
     image: nginx:latest
     ports:
     - containerPort: 80
+
+
+# labels are attached to pod
+# from selector we can use labels

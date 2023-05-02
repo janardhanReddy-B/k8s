@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs-pod
+spec:
+  selector:
+    matchLabels:
+      env: dev
+  replicas: 3
+  template:
+    metadata:
+      name: rs-pod
+      labels:
+        env: dev
+    spec:
+      containers:
+      - name: rs-pod
+        image: nginx
+
+# (pod+controller)= Rc or rs the difreence b/w rc vs rs is selector is mandtray in rs
+# rs is only focus on replicas it cannot overwrite the image
+# in deployment we can overwrite image
