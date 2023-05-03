@@ -1,1 +1,16 @@
-apiVersion:
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: dev
+  name: first-svc
+  labels:
+    env: dev
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  selector:
+    env: test
+# exposing pod within the cluster
+# there is no external connectvity in cluster ip
