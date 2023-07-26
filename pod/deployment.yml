@@ -1,20 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-pod
-  namespace: dev
+  name: httpd
+  labels:
+    app: httpd_deployment
 spec:
   selector:
     matchLabels:
-      env: test
-  replicas: 4
+      app: httpd_deployment
+  replicas: 2
   template:
     metadata:
       name: deploy-pod
       labels:
-        env: test
+        app: httpd_deployment
     spec:
       containers:
-        - name: deploy-pod
-          image: nginx
+        - name: httpd
+          image: httpd:latest
+          ports:
+            - containerPort: 8080
 

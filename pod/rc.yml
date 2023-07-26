@@ -1,16 +1,22 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: new-rc
+  name: httpd-replicationcontroller
+  labels:
+    app: httpd_app
+    type: front-end
 spec:
   replicas: 3
   template:
     metadata:
-      name: ide-pod
+      name: httpd-replicationcontroller
+      labels:
+        app: httpd_app
+        type: front-end
     spec:
       containers:
-      - name: rc-pod
-        image: nginx
+      - name: httpd-container
+        image: httpd:latest
 
 
 # (pod+controller)= Rc or rs the difreence b/w rc vs rs is selector is mandtray in rs
